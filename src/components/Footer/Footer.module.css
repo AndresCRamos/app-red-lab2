@@ -1,0 +1,8 @@
+.footer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mantine-spacing-sm);
+  height: 100%;
+  width: 100%;
+}

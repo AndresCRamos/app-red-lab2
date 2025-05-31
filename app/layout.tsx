@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/Footer";
 import Header from "@/Header";
 import {
   AppShell,
@@ -47,7 +48,9 @@ export default function RootLayout({
             </AppShell.Header>
             <AppShell.Navbar>Navbar</AppShell.Navbar>
             <AppShell.Main>{children}</AppShell.Main>
-            <AppShell.Footer>Footer</AppShell.Footer>
+            <AppShell.Footer>
+              <Footer />
+            </AppShell.Footer>
           </AppShell>
         </MantineProvider>
       </body>
