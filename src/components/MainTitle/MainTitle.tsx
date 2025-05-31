@@ -1,4 +1,4 @@
-import { Title } from "@mantine/core";
+import { Space, Title } from "@mantine/core";
 import classNames from "./MainTitle.module.css";
 
 interface MainTitleProps {
@@ -7,8 +7,11 @@ interface MainTitleProps {
 
 export const MainTitle = ({ title }: MainTitleProps) => {
   return (
-    <Title order={1} className={classNames.main_title}>
-      {title}
-    </Title>
+    <>
+      <Title order={1} className={classNames.main_title}>
+        {title}
+      </Title>
+      <Space h="xl" />
+    </>
   );
 };
