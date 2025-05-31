@@ -1,7 +1,7 @@
 "use client";
+import Header from "@/Header";
 import {
   AppShell,
-  Burger,
   ColorSchemeScript,
   mantineHtmlProps,
   MantineProvider,
@@ -18,6 +18,8 @@ export default function RootLayout({
 }) {
   const [mobileOpen, { toggle: mobileToggle }] = useDisclosure();
   const [desktopOpen, { toggle: desktopToggle }] = useDisclosure();
+
+  const NavbarProps = { mobileOpen, mobileToggle, desktopOpen, desktopToggle };
 
   return (
     <html lang="en" {...mantineHtmlProps}>
@@ -41,17 +43,7 @@ export default function RootLayout({
             footer={{ height: { base: 40, md: 50 } }}
           >
             <AppShell.Header>
-              <Burger
-                opened={mobileOpen}
-                onClick={mobileToggle}
-                hiddenFrom="sm"
-                size={"sm"}
-              />
-              <Burger
-                opened={desktopOpen}
-                onClick={desktopToggle}
-                visibleFrom="sm"
-              />
+              <Header {...NavbarProps} />
             </AppShell.Header>
             <AppShell.Navbar>Navbar</AppShell.Navbar>
             <AppShell.Main>{children}</AppShell.Main>
