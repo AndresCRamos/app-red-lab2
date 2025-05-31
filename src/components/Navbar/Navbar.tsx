@@ -1,5 +1,5 @@
 import { Accordion, Paper, Stack } from "@mantine/core";
-
+import classnames from "./Navbar.module.css";
 const activities = [
   {
     group: "JavaScript",
@@ -27,7 +27,7 @@ const activities = [
 
 export const Navbar = () => {
   return (
-    <Accordion>
+    <Accordion classNames={classnames}>
       {activities.map((activity) => (
         <Accordion.Item key={activity.slug} value={activity.slug}>
           <Accordion.Control>{activity.group}</Accordion.Control>
