@@ -17,7 +17,7 @@ export const Header = ({
   return (
     <div className={classes.header}>
       <Burger opened={mobileOpen} onClick={mobileToggle} hiddenFrom="sm" />
-      <Burger opened={desktopOpen} onClick={desktopToggle} visibleFrom="sm" />
+      <Burger opened={!desktopOpen} onClick={desktopToggle} visibleFrom="sm" />
     </div>
   );
 };
