@@ -1,5 +1,6 @@
-import { Accordion, Paper, Stack } from "@mantine/core";
+import { Accordion, Stack } from "@mantine/core";
 import classnames from "./Navbar.module.css";
+import { NavBarLink } from "./NavbarLink/NavBarLink";
 const activities = [
   {
     group: "JavaScript",
@@ -30,18 +31,16 @@ export const Navbar = () => {
     <Accordion classNames={classnames}>
       {activities.map((activity) => (
         <Accordion.Item key={activity.slug} value={activity.slug}>
-          <Accordion.Control>{activity.group}</Accordion.Control>
+          <Accordion.Control ta={"center"}>{activity.group}</Accordion.Control>
           <Accordion.Panel>
             <Stack gap={0}>
               {activity.list.map((task) => (
-                <Paper
-                  key={task.slug}
-                  withBorder
-                  p="xs"
-                  style={{ cursor: "pointer" }}
-                >
-                  {task.title}
-                </Paper>
+                <NavBarLink
+                  group={activity.slug}
+                  slug={task.slug}
+                  title={task.title}
+                  key={activity.slug + "." + task.slug}
+                />
               ))}
             </Stack>
           </Accordion.Panel>
