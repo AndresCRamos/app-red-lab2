@@ -1,4 +1,5 @@
 import { Button } from "@mantine/core";
+import Link from "next/link";
 
 interface NavBarLinkProps {
   slug: string;
@@ -15,7 +16,7 @@ export const NavBarLink = ({ group, slug, title }: NavBarLinkProps) => {
         fw={400}
         size="md"
         radius={0}
-        component="a"
+        component={Link}
         href={`/${group}/${slug}`}
       >
         {title}
