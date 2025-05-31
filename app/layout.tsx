@@ -1,6 +1,7 @@
 "use client";
 import Footer from "@/Footer";
 import Header from "@/Header";
+import Navbar from "@/Navbar";
 import {
   AppShell,
   ColorSchemeScript,
@@ -46,7 +47,9 @@ export default function RootLayout({
             <AppShell.Header>
               <Header {...NavbarProps} />
             </AppShell.Header>
-            <AppShell.Navbar>Navbar</AppShell.Navbar>
+            <AppShell.Navbar>
+              <Navbar />
+            </AppShell.Navbar>
             <AppShell.Main>{children}</AppShell.Main>
             <AppShell.Footer>
               <Footer />
