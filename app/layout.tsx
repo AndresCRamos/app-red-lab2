@@ -1,18 +1,24 @@
-import "@mantine/core/styles.css";
-import React from "react";
+"use client";
 import {
-  MantineProvider,
+  AppShell,
+  Burger,
   ColorSchemeScript,
   mantineHtmlProps,
+  MantineProvider,
 } from "@mantine/core";
+import "@mantine/core/styles.css";
+import { useDisclosure } from "@mantine/hooks";
+import React from "react";
 import { theme } from "../theme";
 
-export const metadata = {
-  title: "Mantine Next.js template",
-  description: "I am using Mantine with Next.js!",
-};
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactElement;
+}) {
+  const [mobileOpen, { toggle: mobileToggle }] = useDisclosure();
+  const [desktopOpen, { toggle: desktopToggle }] = useDisclosure();
 
-export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
@@ -24,7 +30,34 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          <AppShell
+            header={{ height: { base: 50, md: 60, lg: 70 } }}
+            navbar={{
+              width: { base: 200, md: 300, lg: 400 },
+              breakpoint: "sm",
+              collapsed: { mobile: !mobileOpen, desktop: desktopOpen },
+            }}
+            footer={{ height: { base: 40, md: 50 } }}
+          >
+            <AppShell.Header>
+              <Burger
+                opened={mobileOpen}
+                onClick={mobileToggle}
+                hiddenFrom="sm"
+                size={"sm"}
+              />
+              <Burger
+                opened={desktopOpen}
+                onClick={desktopToggle}
+                visibleFrom="sm"
+              />
+            </AppShell.Header>
+            <AppShell.Navbar>Navbar</AppShell.Navbar>
+            <AppShell.Main>{children}</AppShell.Main>
+            <AppShell.Footer>Footer</AppShell.Footer>
+          </AppShell>
+        </MantineProvider>
       </body>
     </html>
   );
