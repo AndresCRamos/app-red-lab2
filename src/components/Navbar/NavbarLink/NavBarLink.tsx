@@ -17,7 +17,7 @@ export const NavBarLink = ({ group, slug, title }: NavBarLinkProps) => {
         size="md"
         radius={0}
         component={Link}
-        href={`/${group}/${slug}`}
+        href={`/actividades/${group}/${slug}`}
       >
         {title}
       </Button>
