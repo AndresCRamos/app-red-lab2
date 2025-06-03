@@ -29,10 +29,6 @@ const activities = [
     slug: "ajax",
     list: [
       {
-        title: "Recuperar url",
-        slug: "url",
-      },
-      {
         title: "Mostrar pagina",
         slug: "fetch-pagina",
       },
