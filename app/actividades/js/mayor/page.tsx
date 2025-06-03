@@ -1,6 +1,6 @@
 "use client";
 
-import IndicatorChip from "@/IndicatorChip";
+import IndicatorChip, { IndicatorStatus } from "@/IndicatorChip";
 import MainTitle from "@/MainTitle";
 import { Button, Group, Paper, Stack, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const MayorNumeroPage = () => {
   const [result, setResult] = useState<null | string>(null);
+  const [status, setStatus] = useState<IndicatorStatus>("neutral");
 
   const form = useForm({
     initialValues: {
@@ -32,9 +33,11 @@ const MayorNumeroPage = () => {
 
     if (n1 === n2) {
       setResult("Ambos números son iguales.");
+      setStatus("neutral");
     } else {
       const mayor = n1 > n2 ? n1 : n2;
       setResult(`El número mayor es: ${mayor}`);
+      setStatus("success");
     }
   };
 
@@ -45,6 +48,7 @@ const MayorNumeroPage = () => {
         <form
           onSubmit={form.onSubmit(handleSubmit, () => {
             setResult(null);
+            setStatus("fail");
           })}
         >
           <Stack>
@@ -63,11 +67,7 @@ const MayorNumeroPage = () => {
             </Group>
             {result && (
               <Group justify="center">
-                <IndicatorChip
-                  result={true}
-                  trueText={result}
-                  falseText={result}
-                />
+                <IndicatorChip status={status} text={result} />
               </Group>
             )}
           </Stack>
