@@ -1,5 +1,5 @@
 "use client";
-import IndicatorChip from "@/IndicatorChip";
+import IndicatorChip, { IndicatorStatus } from "@/IndicatorChip";
 import MainTitle from "@/MainTitle";
 import { Button, Group, Paper, Stack, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -12,7 +12,7 @@ const isPalindrome = (text: string) => {
 };
 
 const PalindromoPage = () => {
-  const [result, setResult] = useState<null | boolean>(null);
+  const [result, setResult] = useState<IndicatorStatus>("neutral");
 
   const form = useForm({
     initialValues: {
@@ -26,14 +26,20 @@ const PalindromoPage = () => {
   });
 
   const handleSubmit = (values: typeof form.values) => {
-    setResult(isPalindrome(values.phrase));
+    if (isPalindrome(values.phrase)) {
+      setResult("success");
+    } else {
+      setResult("fail");
+    }
   };
 
   return (
     <section>
       <MainTitle title="¿Es palíndromo?" />
       <Paper shadow="md" radius="md" p="lg" mt="md" withBorder>
-        <form onSubmit={form.onSubmit(handleSubmit, () => setResult(null))}>
+        <form
+          onSubmit={form.onSubmit(handleSubmit, () => setResult("neutral"))}
+        >
           <Stack>
             <TextInput
               label="Escribe una frase"
@@ -42,12 +48,15 @@ const PalindromoPage = () => {
             <Group justify="center">
               <Button type="submit">Verificar</Button>
             </Group>
-            {result !== null && (
+            {result !== "neutral" && (
               <Group justify="center">
                 <IndicatorChip
-                  result={result}
-                  trueText="¡Sí! Es un palíndromo."
-                  falseText="No, no es un palíndromo."
+                  status={result}
+                  text={
+                    result === "success"
+                      ? "¡Sí! Es un palíndromo."
+                      : "No, no es un palíndromo."
+                  }
                 />
               </Group>
             )}
